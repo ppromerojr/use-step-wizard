@@ -1,6 +1,6 @@
 {
   "name": "use-step-wizard",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Headless multi-step wizard state for React web and React Native.",
   "license": "MIT",
   "author": "Pabs Romero Jr.",
