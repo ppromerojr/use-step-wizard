@@ -5,3 +5,8 @@ dist/
 *.log
 .env
 .env.*
+
+# Example app artifacts
+examples/**/node_modules/
+examples/**/dist/
+examples/react-native/.expo/

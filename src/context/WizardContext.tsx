@@ -1,7 +1,7 @@
 import { createContext } from "react";
 
-import type { WizardContextValues } from "../types";
+import type { WizardContextType } from "../types";
 
-const WizardContext = createContext<WizardContextValues | null>(null);
+const WizardContext = createContext<WizardContextType | null>(null);
 
 export default WizardContext;

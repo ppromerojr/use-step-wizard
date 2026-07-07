@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from "react";
 
-import type { UseWizardStateOptions, WizardContextValues, WizardState } from "../types";
+import type { UseWizardStateOptions, WizardContextType, WizardState } from "../types";
 
 const clampIndex = (index: number, totalSteps: number) =>
   Math.min(Math.max(0, index), Math.max(0, totalSteps - 1));
@@ -8,7 +8,7 @@ const clampIndex = (index: number, totalSteps: number) =>
 const useWizardState = ({
   name = "",
   initialStep = 0,
-}: UseWizardStateOptions = {}): WizardContextValues => {
+}: UseWizardStateOptions = {}): WizardContextType => {
   const [state, setState] = useState<WizardState>(() => ({
     totalSteps: 0,
     steps: [],

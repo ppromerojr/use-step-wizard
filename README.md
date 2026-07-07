@@ -18,13 +18,26 @@ npm install use-step-wizard
 
 Peer dependency: React 18+.
 
-## Quick start
+## Quick start (React web)
 
 ```tsx
-import Wizard, {
-  useWizardContext,
-  type WizardContextValues,
-} from "use-step-wizard";
+import { Wizard, type WizardContextType } from "use-step-wizard";
+
+function StepCard({
+  title,
+  description,
+}: {
+  name?: string;
+  title: string;
+  description: string;
+}) {
+  return (
+    <div>
+      <h2>{title}</h2>
+      <p>{description}</p>
+    </div>
+  );
+}
 
 function Navigation() {
   return (
@@ -32,13 +45,11 @@ function Navigation() {
       {({
         previous,
         next,
-        goToStep,
         isFirstStep,
         isLastStep,
         activeIndex,
         totalSteps,
-        steps,
-      }: WizardContextValues) => (
+      }: WizardContextType) => (
         <div>
           <button type="button" onClick={previous} disabled={isFirstStep}>
             Back
@@ -47,7 +58,7 @@ function Navigation() {
             Step {activeIndex + 1} of {totalSteps}
           </span>
           <button type="button" onClick={next} disabled={isLastStep}>
-            Next
+            {isLastStep ? "Done" : "Next"}
           </button>
         </div>
       )}
@@ -55,13 +66,28 @@ function Navigation() {
   );
 }
 
-function App() {
+export default function App() {
   return (
     <Wizard.Root initialStep={0} name="onboarding">
       <Wizard.Steps>
-        <div key="profile">Step 1</div>
-        <div key="details">Step 2</div>
-        <div key="review">Step 3</div>
+        <StepCard
+          key="profile"
+          name="profile"
+          title="Profile"
+          description="Collect basic user information."
+        />
+        <StepCard
+          key="details"
+          name="details"
+          title="Details"
+          description="Add preferences and settings."
+        />
+        <StepCard
+          key="review"
+          name="review"
+          title="Review"
+          description="Confirm everything before finishing."
+        />
       </Wizard.Steps>
       <Navigation />
     </Wizard.Root>
@@ -69,33 +95,87 @@ function App() {
 }
 ```
 
-## React Native
-
-The API is the same — swap HTML elements for React Native components.
+You can also default-import `Wizard` if you prefer:
 
 ```tsx
-import { View, Text, Pressable } from "react-native";
-import Wizard, { type WizardContextValues } from "use-step-wizard";
+import Wizard, { type WizardContextType } from "use-step-wizard";
+```
 
-function Onboarding() {
+## React Native
+
+The API is the same — swap HTML elements for React Native components. See `examples/react-native/App.tsx` for a full styled example.
+
+```tsx
+import { Pressable, Text, View } from "react-native";
+import { Wizard, type WizardContextType } from "use-step-wizard";
+
+function StepCard({
+  title,
+  description,
+}: {
+  name?: string;
+  title: string;
+  description: string;
+}) {
   return (
-    <Wizard.Root>
+    <View>
+      <Text>{title}</Text>
+      <Text>{description}</Text>
+    </View>
+  );
+}
+
+function Navigation() {
+  return (
+    <Wizard.Navigation>
+      {({
+        previous,
+        next,
+        isFirstStep,
+        isLastStep,
+        activeIndex,
+        totalSteps,
+      }: WizardContextType) => (
+        <View style={{ flexDirection: "row", alignItems: "center", gap: 12 }}>
+          <Pressable onPress={previous} disabled={isFirstStep}>
+            <Text>Back</Text>
+          </Pressable>
+          <Text>
+            Step {activeIndex + 1} of {totalSteps}
+          </Text>
+          <Pressable onPress={next} disabled={isLastStep}>
+            <Text>{isLastStep ? "Done" : "Next"}</Text>
+          </Pressable>
+        </View>
+      )}
+    </Wizard.Navigation>
+  );
+}
+
+export default function App() {
+  return (
+    <Wizard.Root initialStep={0} name="onboarding">
       <Wizard.Steps>
-        <View><Text>Step 1</Text></View>
-        <View><Text>Step 2</Text></View>
+        <StepCard
+          key="profile"
+          name="profile"
+          title="Profile"
+          description="Collect basic user information."
+        />
+        <StepCard
+          key="details"
+          name="details"
+          title="Details"
+          description="Add preferences and settings."
+        />
+        <StepCard
+          key="review"
+          name="review"
+          title="Review"
+          description="Confirm everything before finishing."
+        />
       </Wizard.Steps>
-      <Wizard.Navigation>
-        {({ previous, next, isFirstStep, isLastStep }: WizardContextValues) => (
-          <View style={{ flexDirection: "row", gap: 12 }}>
-            <Pressable onPress={previous} disabled={isFirstStep}>
-              <Text>Back</Text>
-            </Pressable>
-            <Pressable onPress={next} disabled={isLastStep}>
-              <Text>Next</Text>
-            </Pressable>
-          </View>
-        )}
-      </Wizard.Navigation>
+      <Navigation />
     </Wizard.Root>
   );
 }
@@ -168,7 +248,7 @@ const { steps, goToStep } = useWizardContext();
 | --- | --- |
 | `WizardContext` | Low-level React context |
 
-### `WizardContextValues`
+### `WizardContextType`
 
 | Property | Type | Description |
 | --- | --- | --- |
@@ -191,6 +271,8 @@ npm install
 npm run build
 npm run typecheck
 ```
+
+Runnable examples live in `examples/react-web` and `examples/react-native`.
 
 ## License
 

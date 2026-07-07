@@ -27,7 +27,7 @@ export type WizardState = {
   steps: WizardStep[];
 };
 
-export interface WizardContextValues {
+export interface WizardContextType {
   name: string;
   steps: WizardStep[];
   activeIndex: number;
@@ -42,5 +42,5 @@ export interface WizardContextValues {
 }
 
 export interface WizardNavigationProps {
-  children: ((context: WizardContextValues) => React.ReactNode) | React.ReactNode;
+  children: ((context: WizardContextType) => React.ReactNode) | React.ReactNode;
 }
