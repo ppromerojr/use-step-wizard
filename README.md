@@ -373,23 +373,8 @@ cd examples/react-native && npm install && npm start
 npm install
 npm run build
 npm run typecheck
+npm test
 ```
-
-## Releasing
-
-This project uses [Changesets](https://github.com/changesets/changesets) for versioning and npm publishing.
-
-1. After making a change, add a changeset:
-
-```bash
-npm run changeset
-```
-
-2. Commit the changeset file in `.changeset/` with your PR and merge to `main`.
-3. The **Release** GitHub Action opens a **Version Packages** PR that bumps the version and updates `CHANGELOG.md`.
-4. Merge the Version Packages PR — the Release workflow publishes to npm automatically.
-
-Requires `NPM_TOKEN` in the **release** environment secrets (automation token with publish access).
 
 ## License
 
