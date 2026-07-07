@@ -69,9 +69,5 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ppromerojr/use-step-wizard.git"
-  },
-  "publishConfig": {
-    "access": "public",
-    "provenance": true
   }
 }
