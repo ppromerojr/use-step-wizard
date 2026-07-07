@@ -1,7 +1,7 @@
 {
   "name": "use-step-wizard",
   "version": "1.0.1",
-  "description": "A small React wizard state and component library.",
+  "description": "Headless multi-step wizard state for React web and React Native.",
   "license": "MIT",
   "author": "Pabs Romero Jr.",
   "type": "module",
@@ -29,11 +29,17 @@
   },
   "keywords": [
     "react",
+    "react-native",
     "wizard",
     "steps",
     "hook",
     "multi-step",
-    "form"
+    "multi-step-form",
+    "form",
+    "onboarding",
+    "headless",
+    "compound-components",
+    "typescript"
   ],
   "peerDependencies": {
     "react": ">=18.0.0"
