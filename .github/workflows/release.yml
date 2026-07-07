@@ -10,7 +10,6 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
-# Explicitly grant the workflow permissions to manage code and pull requests
 permissions:
   contents: write
   pull-requests: write
@@ -22,13 +21,15 @@ jobs:
     name: Install, Build & Test
     runs-on: ubuntu-latest
     steps:
+      # Bumped from v4 to v6 to support Node 24 natively
       - name: Checkout Repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
+      # Bumped from v4 to v6 to support Node 24 natively
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 22 # Your code continues to compile/test on Node 22 cleanly
           cache: 'npm'
 
       - name: Install Dependencies
@@ -46,13 +47,15 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
+      # Bumped from v4 to v6
       - name: Checkout Repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
+      # Bumped from v4 to v6
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 22
           cache: 'npm'
@@ -69,6 +72,7 @@ jobs:
       - name: Build Library
         run: npm run build
 
+      # Check for updates to changesets if warnings persist
       - name: Create Release Pull Request or Publish to npm
         uses: changesets/action@v1
         with:
