@@ -29,7 +29,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 22 # Your code continues to compile/test on Node 22 cleanly
+          node-version: 24 # Your code continues to compile/test on Node 22 cleanly
           cache: 'npm'
 
       - name: Install Dependencies
@@ -57,7 +57,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 24
           cache: 'npm'
           registry-url: 'https://registry.npmjs.org'
 
