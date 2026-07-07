@@ -3,8 +3,8 @@ import userEvent from "@testing-library/user-event";
 import type { ReactNode } from "react";
 import { afterEach, describe, expect, it } from "vitest";
 
-import Wizard from "./Wizard";
-import type { WizardContextType } from "./types";
+import Wizard from "../Wizard";
+import type { WizardContextType } from "../types";
 
 function Step({
   name,

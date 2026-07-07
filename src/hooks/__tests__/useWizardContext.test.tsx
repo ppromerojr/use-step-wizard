@@ -2,9 +2,9 @@ import { render, renderHook, screen } from "@testing-library/react";
 import type { ReactNode } from "react";
 import { describe, expect, it, vi } from "vitest";
 
-import WizardContext from "../context/WizardContext";
-import useWizardState from "./useWizardState";
-import useWizardContext from "./useWizardContext";
+import WizardContext from "../../context/WizardContext";
+import useWizardState from "../useWizardState";
+import useWizardContext from "../useWizardContext";
 
 const wrapper =
   (value: ReturnType<typeof useWizardState>) =>
